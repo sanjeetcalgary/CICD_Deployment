@@ -34,6 +34,19 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Docker login'){
+            steps{
+                withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpasswd')]) {
+                    sh "docker login -u sanjeetkr -p $dockerpasswd"
+                }
+            }
+        }
+         stage('Push to dockerhub'){
+            steps{
+                sh "docker push $IMAGE_NAME:$IMAGE_TAG"
+                sh "docker push $IMAGE_NAME:latest"
+            }
+        }
     }
 
 }
