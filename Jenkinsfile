@@ -53,13 +53,21 @@ pipeline {
                 sh "docker push $IMAGE_NAME:latest"
             }
         }
-        stage("SSH Into k8s Server") {
+          stage("SSH Into k8s Server") {
             def remote = [:]
             remote.name = 'K8S master'
             remote.host = '10.0.0.112'
             remote.user = 'master'
             remote.password = 'admin'
             remote.allowAnyHosts = true
+
+             stage('Put k8s-spring-boot-deployment.yml onto k8smaster') {
+                sshPut remote: remote, from: 'k8deployment.yaml', into: '.'
+             }
+
+              stage('Deploy spring boot') {
+                sshCommand remote: remote, command: "kubectl apply -f k8deployment.yaml"
+              }
         } 
     }
 
