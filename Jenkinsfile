@@ -34,6 +34,12 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Building container image') {
+            steps{
+                sh "docker build -t $IMAGE_NAME:$IMAGE_TAG ."
+                sh "docker build -t $IMAGE_NAME:latest ."
+            }
+        }
         stage('Docker login'){
             steps{
                 withCredentials([string(credentialsId: 'dockerpassword', variable: 'dockerpasswd')]) {
