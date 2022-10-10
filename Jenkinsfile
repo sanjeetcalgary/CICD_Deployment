@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'Slave'}
     environment {
-        //WAR_PATH= 
+        WAR_PATH= "$WORKSPACE/target/*.war"
         IMAGE_NAME = "sanjeetkr/java_webapp"
         IMAGE_TAG = "$BUILD_NUMBER"
     }
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Generate the artifact'){
             steps{
-                sh 'mvn clean test package'
+                sh 'mvn clean install'
             }
         }
     }
