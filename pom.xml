@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sanjeetqa</groupId>
 	<artifactId>sanjeetqa</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>10.2</version>
 
 	<name>devops</name>
@@ -17,8 +17,9 @@
 		<spring.version>5.1.2.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<tomcat.host.url>http://10.0.0.141:8090</tomcat.host.url>
+		
 		<!--
+			<tomcat.host.url>http://10.0.0.141:8090</tomcat.host.url>
 		<nexus.host.url>http://13.233.179.210:8081</nexus.host.url>
 		<tomcat.host.url>http://3.109.186.189:8080</tomcat.host.url>
 		<sonar.host.url>http://0.0.0.0:9000</sonar.host.url>

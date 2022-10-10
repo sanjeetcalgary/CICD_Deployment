@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Generate the artifact'){
             steps{
-                sh 'mvn clean install'
+                sh 'mvn clean package'
             }
         }
     }
