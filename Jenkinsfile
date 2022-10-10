@@ -53,6 +53,14 @@ pipeline {
                 sh "docker push $IMAGE_NAME:latest"
             }
         }
+        stage("SSH Into k8s Server") {
+            def remote = [:]
+            remote.name = 'K8S master'
+            remote.host = '10.0.0.112'
+            remote.user = 'master'
+            remote.password = 'admin'
+            remote.allowAnyHosts = true
+        } 
     }
 
 }
