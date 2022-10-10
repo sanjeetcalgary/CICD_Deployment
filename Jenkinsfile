@@ -13,7 +13,7 @@ pipeline {
         maven 'Maven_local'
     }
     triggers {
-        PollSCM('* * * * *')
+        pollSCM('* * * * *')
     }
     stages {
         stage('Workspace Clean'){
