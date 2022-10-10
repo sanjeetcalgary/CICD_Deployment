@@ -1,18 +1,21 @@
-pipeline{
+pipeline {
     agent { label 'Slave'}
-    environment{
-        WAR_PATH = 
+    environment {
+        //WAR_PATH= 
         IMAGE_NAME = "sanjeetkr/java_webapp"
         IMAGE_TAG = "$BUILD_NUMBER"
     }
-    options{
+    options {
         buildDiscarder(logRotator(numToKeepStr : '5'))
         retry(2)
     }
-    tools{
+    tools {
         maven 'Maven_local'
     }
-    stages{
+    triggers {
+        PollSCM('* * * * *')
+    }
+    stages {
         stage('Workspace Clean'){
             steps{
                 script{
